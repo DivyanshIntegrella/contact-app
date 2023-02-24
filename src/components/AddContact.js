@@ -1,22 +1,36 @@
 import React from 'react';
 
 class AddContact extends React.Component {
+
+    state = {
+        name: "",
+        email: ""
+    };
+
+    add = (e) => {
+        e.preventDefault();
+        if(this.state.name === "" || this.state.email === ""){
+            alert("All the fields are mandatory!");
+            return
+        }
+        this.props.addContactHandler(this.state);
+        this.setState({name: "", email: ""});
+    }
+    
     render() {
         return (
-            <div className="ui main">
-                <h2>Add Contact</h2>
-                <form className="ui form">
-                    <div className="field">
-                        <label>Name</label>
-                        <input type="text" name="name" placeholder="Name" />
+            <div className="container">
+                <h4>Add Contact</h4>
+                <form className='form-control' onSubmit={this.add}>
+                    <div className="mb-3">
+                        <label for="exampleFormControlInput1" className="form-label">Name</label>
+                        <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Name" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})} />
                     </div>
-                    <div className="field">
-                        <label>Email</label>
-                        <input type="text" name="email" placeholder="Email" />
+                    <div className="mb-3">
+                        <label for="exampleFormControlInput2" className="form-label">Email</label>
+                        <input type="email" className="form-control" id="exampleFormControlInput2" placeholder='Email' value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} />
                     </div>
-                    <div>
-                        <button className='ui button blue'>Add</button>
-                    </div>
+                    <button type="submit" className="btn btn-primary">Add</button>
                 </form>
             </div>
         );
