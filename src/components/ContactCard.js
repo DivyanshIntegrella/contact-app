@@ -13,7 +13,7 @@ const ContactCard = (props) => {
                         <div className="fw-bold">{name}</div>
                         {email}
                     </div>
-                    <i className="bi bi-trash3 fs-4 my-2" style={{color:"red"}}></i>
+                    <i className="bi bi-trash3 fs-4 my-2" style={{color:"red", cursor:'pointer'}} onClick={() => props.clickHandler(id)}></i>
                 </li>
             </ul>
             <hr />
